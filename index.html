@@ -1183,11 +1183,12 @@ const WA_DEFAULT = `Assalamu Alaikum,\nI would like to confirm my attendance for
 const waLink = msg => `https://wa.me/${CONFIG.whatsappNumber.replace(/\D/g, '')}?text=${enc(msg)}`;
 const form = $('#rsvpForm'), err = $('#rsvpErr'), status = $('#rsvpStatus');
 const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const DUA = 'بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ\nBarak Allahu laka wa baraka alaik, wa jama\'a bainakuma fi khair\n(May Allah bless you and send blessings upon you, and bring goodness between you.)';
 function replyText(d) {
   const head = d.attending === 'yes'
     ? WA_DEFAULT
     : `Assalamu Alaikum,\nRegretfully, I will be unable to attend the Nikah of ${COUPLE} on 29 November 2026.`;
-  return `${head}\n\nName: ${d.name}\nGuests: ${d.guests}${d.message ? `\nMessage: ${d.message}` : ''}`;
+  return `${head}\n\nName: ${d.name}\nGuests: ${d.guests}${d.message ? `\nMessage: ${d.message}` : ''}\n\n${DUA}`;
 }
 form.addEventListener('submit', e => {
   e.preventDefault(); err.textContent = '';
